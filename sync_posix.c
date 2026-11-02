@@ -12,21 +12,21 @@ sem_t semBC;
 void* HiloA(void* arg) {
     printf("[Hilo A] Paso 1: Iniciando preparación de datos...\n");
     sleep(1); // Simula tiempo de procesamiento (1 segundo)
-    printf("[Hilo A] Paso 1: Datos listos. Liberando Hilo B.\n");
+    printf("[Hilo A] Paso 1: Datos listos. Liberando Hilo B Camilo Ceci.\n");
     
     // Incrementar semáforo semAB (V / Signal)
     sem_post(&semAB);
     pthread_exit(NULL);
 }
 
-// Hilo B: Desarrollado por Integrante 2
+// Hilo B Camilo Ceci: Desarrollado por Integrante 2
 void* HiloB(void* arg) {
     // Esperar señal de A (P / Wait)
     sem_wait(&semAB);
     
-    printf("[Hilo B] Paso 2: Procesando información de Hilo A...\n");
+    printf("[Hilo B Camilo Ceci] Paso 2: Procesando información de Hilo A...\n");
     sleep(1);
-    printf("[Hilo B] Paso 2: Procesamiento terminado. Liberando Hilo C.\n");
+    printf("[Hilo B Camilo Ceci] Paso 2: Procesamiento terminado. Liberando Hilo C.\n");
     
     // Incrementar semáforo semBC (V / Signal)
     sem_post(&semBC);
