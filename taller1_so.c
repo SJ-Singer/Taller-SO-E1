@@ -15,14 +15,17 @@ sem_t semA_C; // Notifica a C que A escribió Cifra 1
 sem_t semC_B; // Notifica a B que C leyó y limpió la variable
 sem_t semB_C; // Notifica a C que B escribió Cifra 2
 
-// --- INTEGRANTE 1: Hilo A ---
+// --- INTEGRANTE 1: Hilo A Santhiago Singer---
 void* HiloA(void* arg) {
     int cifra_a = 15;
     
-    // TO-DO Proteger escritura con Mutex e inicializar variable compartida
+    // Proteger escritura con Mutex e inicializar variable compartida
+    pthread_mutex_lock(&mutex_variable);
+    variable_compartida = cifra_a;
+    pthread_mutex_unlock(&mutex_variable);
     
-    
-    // TO-DO Notificar a Hilo C
+    // Notificar a Hilo C
+    sem_post(&semA_C);
     return NULL;
 }
 
