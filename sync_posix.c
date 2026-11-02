@@ -19,7 +19,7 @@ void* HiloA(void* arg) {
     pthread_exit(NULL);
 }
 
-// Hilo B - Dev: Camilo Ceci: Desarrollado por Integrante 2
+// Hilo B - Dev Camilo Ceci:
 void* HiloB(void* arg) {
     // Esperar señal de A (P / Wait)
     sem_wait(&semAB);
