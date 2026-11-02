@@ -8,11 +8,11 @@
 sem_t semAB;
 sem_t semBC;
 
-// Hilo A: Desarrollado por Integrante 1
+// Hilo A - Dev: Santhiago Singer: Desarrollado por Integrante 1
 void* HiloA(void* arg) {
-    printf("[Hilo A] Paso 1: Iniciando preparación de datos...\n");
+    printf("[Hilo A - Dev: Santhiago Singer] Paso 1: Iniciando preparación de datos...\n");
     sleep(1); // Simula tiempo de procesamiento (1 segundo)
-    printf("[Hilo A] Paso 1: Datos listos. Liberando Hilo B - Dev: Camilo Ceci.\n");
+    printf("[Hilo A - Dev: Santhiago Singer] Paso 1: Datos listos. Liberando Hilo B - Dev Camilo Ceci.\n");
     
     // Incrementar semáforo semAB (V / Signal)
     sem_post(&semAB);
@@ -24,9 +24,9 @@ void* HiloB(void* arg) {
     // Esperar señal de A (P / Wait)
     sem_wait(&semAB);
     
-    printf("[Hilo B - Dev: Camilo Ceci] Paso 2: Procesando información de Hilo A...\n");
+    printf("[Hilo B - Dev Camilo Ceci] Paso 2: Procesando información de Hilo A - Dev: Santhiago Singer...\n");
     sleep(1);
-    printf("[Hilo B - Dev: Camilo Ceci] Paso 2: Procesamiento terminado. Liberando Hilo C.\n");
+    printf("[Hilo B - Dev Camilo Ceci] Paso 2: Procesamiento terminado. Liberando Hilo C.\n");
     
     // Incrementar semáforo semBC (V / Signal)
     sem_post(&semBC);
@@ -38,7 +38,7 @@ void* HiloC(void* arg) {
     // Esperar señal de B (P / Wait)
     sem_wait(&semBC);
     
-    printf("[Hilo C] Paso 3: Consolidando y mostrando resultados finales.\n");
+    printf("[Hilo C - Dev: Joan Briceño] Paso 3: Consolidando y mostrando resultados finales.\n");
     sleep(1);
     printf("[Hilo C] Paso 3: Proceso completo finalizado exitosamente.\n");
     
