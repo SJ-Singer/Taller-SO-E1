@@ -45,23 +45,32 @@ void* HiloB(void* arg) {
     return NULL;
 }
 
-// --- INTEGRANTE 3: Hilo C ---
+// --- INTEGRANTE 3: Hilo C Joan Briceno---
 void* HiloC(void* arg) {
     int cifra1 = 0, cifra2 = 0;
 
     // TO-DO --- PARTE 1: Procesar Cifra 1 ---
-    
+    sem_wait(&semA_C);
+    pthread_mutex_lock(&mutex_variable);
+    cifra1 = variable_compartida;
+    variable_compartida = 0;
+    pthread_mutex_unlock(&mutex_variable);
 
     // TO-DO Dar paso a Hilo B Camilo Ceci
+    sem_post(&semC_B);
 
     // TO-DO --- PARTE 2: Procesar Cifra 2 y Consolidar ---
-
+    sem_wait(&semB_C);
+    pthread_mutex_lock(&mutex_variable);
+    cifra2 = variable_compartida;
+    variable_compartida = 0;
+    pthread_mutex_unlock(&mutex_variable);
 
     // Renderizado final
     printf("\n================ RENDERIZADO DE RESULTADOS ================\n");
     printf("-> Cifra enviada por Hilo A: %d\n", cifra1);
     printf("-> Cifra enviada por Hilo B Camilo Ceci: %d\n", cifra2);
-    printf("-> SUMA TOTAL CALCULADA POR HILO C: %d\n", cifra1 + cifra2);
+    printf("-> SUMA TOTAL CALCULADA POR HILO C Joan Briceno: %d\n", cifra1 + cifra2);
     printf("===========================================================\n");
 
     return NULL;
@@ -81,12 +90,12 @@ int main(int argc, char *argv[]) {
     // TO-DO Creación de hilos
     pthread_create(&hA, NULL, HiloA, NULL);
     pthread_create(&hB, NULL, HiloB, NULL);
-    // falta el c
+    pthread_create(&hC, NULL, HiloC, NULL);
 
     // TO-DO Esperar a que terminen
     pthread_join(hA, NULL);
     pthread_join(hB, NULL);
-    // falta el c
+    pthread_join(hC, NULL);
 
     // TO-DO Destrucción de recursos
     pthread_mutex_destroy(&mutex_variable);
